@@ -26,6 +26,7 @@ AngularJS 可以构建一个单一页面应用程序
 		app.controller("cont1",function($scope,$rootScope){...}  
 		//$scope是固定写法  
 		//控制器取值范围对应视图ng-controller的节点范围
+		
 - 3.//$scope.set//函数名=function(){}
 
 		函数写法$scope.函数名=fn（）{}
@@ -121,25 +122,27 @@ AngularJS 可以构建一个单一页面应用程序
 	ng-options 指令用于使用 < options> 填充 < select> 元素的选项。
   
 ######例：  
-	<select ng-model="v1" ng-options="val.a for val in data" ng-change="test(v1)">
-		<!-- ___val.a for为了在option里面显示__ val(去壳) in data -->
-		<!-- v1就是  中间的val -->
-		<option value="">全部</option>
-	</select>
+
+
+	<se lect ng-model="v1" ng-options="val.a for val in data" ng-change="test(v1)">  
+		<!-- ___val.a for为了在option里面显示__ val(去壳) in data -->  
+		<!-- v1就是  中间的val -->  
+		<opt ion value="">全部</op tion>  
+	</se lect>  
 	<!-- {a:'上海',b:[
 		 			{c:'上海',e:['浦东新区','黄浦区','青浦区','卢湾区','闸北区','静安区']}
 		 				]
 		 		     }, -->
-	<select ng-model="v2" ng-options="val.c for val in v1.b" ng-change="test(v1)">
-		<option value="">全部</option>
-	</select>
-	<select ng-model="v3" ng-options="val for val in v2.e" ng-change="test(v1)">
-		<option value="">全部</option>
-	</select>
-	<script>
+	<sel ect ng-model="v2" ng-options="val.c for val in v1.b" ng-change="test(v1)">  
+		<op tion value="">全部</opt ion>  
+	</se lect>  
+	<se lect ng-model="v3" ng-options="val for val in v2.e" ng-change="test(v1)">  
+		<opt ion value="">全部</opt ion>  
+	</se lect>  
+	Javascript  部分
 		var app=angular.module("myapp",[]);
-		app.controller("cont",function($scope){
-			$scope.data=
+		app.controller("cont",function($scope){  
+			$scope.data=  
  				[
 		 			{a:'上海',b:[
 		 				{c:'上海',e:['浦东新区','黄浦区','青浦区','卢湾区','闸北区','静安区']}
@@ -153,29 +156,29 @@ AngularJS 可以构建一个单一页面应用程序
 		            {c:'北平',e:['朝阳','老城区']}
 		                ]
 		            }
-		 		];
+		 		];  
 
-			$scope.test=function(val){
-				console.log(val);
-			}
-		})
-- **ng-switch 指令**
+			$scope.test=function(val){  
+				console.log(val);  
+			}  
+		})  
+- **ng-switch 指令**  
 	
-	ng-switch 指令根据表达式显示或隐藏对应的部分。  
-	对应的子元素使用 ng-switch-when 指令，如果匹配选中选择显示，其他为匹配的则移除。  
-	你可以通过使用 ng-switch-default 指令设置默认选项，如果都没有匹配的情况，默认选项会显示  
+	ng-switch 指令根据表达式显示或隐藏对应的部分。    
+	对应的子元素使用 ng-switch-when 指令，如果匹配选中选择显示，其他为匹配的则移除。    
+	你可以通过使用 ng-switch-default 指令设置默认选项，如果都没有匹配的情况，默认选项会显示    
 	语法  
-	<element ng-switch="expression">  
-	.   <element ng-switch-when="value">< /element>  
-	.   <element ng-switch-when="value">< /element>  
-	.   <element ng-switch-when="value">< /element>  
-	.   <element ng-switch-default></element>  
-	< /element>
+	
+	
+		<element ng-switch="expression">  
+		.   <element ng-switch-when="value">< /element>  
+		.   <element ng-switch-when="value">< /element>  
+		.   <element ng-switch-when="value">< /element>  
+		.   <element ng-switch-default></element>  
+		< /element>
+	
 ##过滤器
 	过滤器使用一个管道字符（|）添加到表达式和指令中。  
-
-
-
 	
 <table>
  <tr>AngularJS 过滤器可用于转换数据（内置过滤器）：
@@ -203,42 +206,54 @@ AngularJS 可以构建一个单一页面应用程序
   <td>截取数据 {{"123456" | limitTo :2/-2}} // 从前面/后面开始截取2位</td>
  </tr>
 </table>
-#####时间 date格式化
-	{{149016 | date:"yyyy-MM-dd HH:mm:ss"}} // 2017-06-15 10:09:25
-	app.controller("cont",function($scope,$interval){
-		var timer=$interval(function(){
-				$scope.timer=new Date();
-			},1000/24)
-	})
->$interval
 
-	$interval是angular独有的自带的定时器
-#####number 格式化（保留小数）
-{{149016.1945000 | number:2}}
-#####filter查找
-	filter 过滤器从数组中选择一个子集
-	// 查找name为iphone的行
-	{{ [{"age": 20,"id": 10,"name": "iphone"},
-	{"age": 12,"id": 11,"name": "sunm xing"},
-	{"age": 44,"id": 12,"name": "test abc"}
-	] | filter:{'name':'iphone'} }}     
-#####orderBy 排序
-	// 根id降序排
-	{{ [{"age": 20,"id": 10,"name": "iphone"},
-	{"age": 12,"id": 11,"name": "sunm xing"},
-	{"age": 44,"id": 12,"name": "test abc"}
-	] | orderBy:'id':true }}
+#####时间 date格式化  
+
+	{{149016 | date:"yyyy-MM-dd HH:mm:ss"}} // 2017-06-15 10:09:25  
+	app.controller("cont",function($scope,$interval){  
+		var timer=$interval(function(){  
+				$scope.timer=new Date();  
+			},1000/24)  
+	})  
 	
-	// 根据id升序排
-	{{ [{"age": 20,"id": 10,"name": "iphone"},
-	{"age": 12,"id": 11,"name": "sunm xing"},
-	{"age": 44,"id": 12,"name": "test abc"}
-	] | orderBy:'id' }}
-##自定义过滤器
-	app.filter("过滤器名字",function(）{  
-		return function（val）{  
-			return val管道符前面的值} )}
->案例
+>$interval  
+
+	$interval是angular独有的自带的定时器  
+#####number 格式化（保留小数）  
+
+	{{149016.1945000 | number:2}}  
+	
+#####filter查找  
+
+	filter 过滤器从数组中选择一个子集  
+	// 查找name为iphone的行  
+	
+	
+		{{ [{"age": 20,"id": 10,"name": "iphone"},  
+		{"age": 12,"id": 11,"name": "sunm xing"},  
+		{"age": 44,"id": 12,"name": "test abc"}  
+		] | filter:{'name':'iphone'} }}       
+#####orderBy 排序  
+
+	// 根id降序排  
+	
+		{{ [{"age": 20,"id": 10,"name": "iphone"},  
+		{"age": 12,"id": 11,"name": "sunm xing"},  
+		{"age": 44,"id": 12,"name": "test abc"}  
+		] | orderBy:'id':true }}  
+	
+	// 根据id升序排  
+	
+		{{ [{"age": 20,"id": 10,"name": "iphone"},  
+		{"age": 12,"id": 11,"name": "sunm xing"},  
+		{"age": 44,"id": 12,"name": "test abc"}  
+		] | orderBy:'id' }}  
+##自定义过滤器  
+
+	app.filter("过滤器名字",function(）{    
+		return function（val）{    
+			return val管道符前面的值} )}  
+>案例  
 
 	app.filter("test",function(){
 			return function(val){
@@ -247,25 +262,32 @@ AngularJS 可以构建一个单一页面应用程序
 				return val+"是:"+typeof val+"类型";
 			}
 		})
-##表单
-AngularJS 表单是输入控件的集合。
-####数据绑定
-Input 控件使用 ng-model 指令来实现数据绑定。
+##表单  
 
-	<input type="text" ng-model="firstname">
-#####Checkbox（复选框）
-checkbox 的值为 true 或 false，可以使用 ng-model 指令绑定，它的值可以用于应用中：
+AngularJS 表单是输入控件的集合。 
 
-	复选框选中后显示 h1 标签内容：
+####数据绑定  
+
+Input 控件使用 ng-model 指令来实现数据绑定。  
+
+	<input type="text" ng-model="firstname">  
+	
+#####Checkbox（复选框）  
+
+checkbox 的值为 true 或 false，可以使用 ng-model 指令绑定，它的值可以用于应用中：  
+ 
+	复选框选中后显示 h1 标签内容：  
 	
 	< form>
 	    <input type="checkbox" ng-model="myVar">
 	< /form>
 	 
 	<h1 ng-show="myVar">My Header</h1>
-#####单选框
-我们可以使用 ng-model 来绑定单选按钮到你的应用中。
-单选框使用同一个 ng-model ，可以有不同的值，但只有被选中的单选按钮的值会被使用。
+#####单选框  
+
+我们可以使用 ng-model 来绑定单选按钮到你的应用中。 
+
+单选框使用同一个 ng-model ，可以有不同的值，但只有被选中的单选按钮的值会被使用。  
 
 	根据选中的单选按钮，显示信息：
 	< form>
@@ -274,9 +296,11 @@ checkbox 的值为 true 或 false，可以使用 ng-model 指令绑定，它的�
     <input type="radio" ng-model="myVar" value="tuts">Tutorials
     <input type="radio" ng-model="myVar" value="cars">Cars
 	< /form>
-#####下拉菜单
-使用 ng-model 指令可以将下拉菜单绑定到你的应用中。
-ng-model 属性的值为你在下拉菜单选中的选项：
+#####下拉菜单  
+
+使用 ng-model 指令可以将下拉菜单绑定到你的应用中。 
+
+ng-model 属性的值为你在下拉菜单选中的选项：    
 	
 	根据选中的下拉菜单选项，显示信息：
 	<form>
@@ -288,9 +312,11 @@ ng-model 属性的值为你在下拉菜单选中的选项：
 	    <option value="cars">Cars
 	</select>
 	</form>
-#####表单案例
-	<body >
-		<form name="myform">
+	
+	
+#####表单案例  
+	
+		<f orm name="myform">
 			<input type="text" name="user" ng-model="test1" required ng-pattern="/[0-9]{3}/">
 			<!-- angualr ng-pattern="/[0-9]{3}/" -->
 			<input type="text" name="user1" ng-model="test2">
@@ -311,87 +337,122 @@ ng-model 属性的值为你在下拉菜单选中的选项：
 				不通过验证:{{myform.user.$invalid}}
 			</span>
 			<button ng-disabled="myform.user.$invalid">提交</button>
-		</form>
-		<script>	
+		</f orm>
+	javascript部分
 			var app=angular.module("myapp",[]);
-		</script>
-	</body>
-#####AngularJS输入验证（上面有案例）
-- 1.$dirty      表单填写记录
-- 2.$valid		字段内容合法
-- 3.invalid		字段内容是非法的
-- 4.pristine	表单没有填写记录
-##AngularJS 路由
-	1.AngularJS 路由允许我们通过不同的 URL 访问不同的内容。
-	2.通过 AngularJS 可以实现多视图的单页Web应用（single page web application，SPA）。
-	3.通常我们的URL形式为 http://runoob.com/first/page，但在单页Web应用
-	中 AngularJS 通过 # + 标记 实现 例如：
-	http://runoob.com/#/first
-	http://runoob.com/#/second
-	http://runoob.com/#/third
-	4.当点击以上的任意一个链接时，向服务端请的地址都是一样的 (http://runoob.com/)。
-	因为 # 号之后的内容在向服务端请求时会被浏览器忽略掉。 所以就需要在客户端实现 # 号后面
-	内容的功能实现。
-	5.路由 属于angularJS的扩展，需要额外引入文件 angular-route.js
-	6.注意 注意：路由可以是并列关系的节点，指令是包裹关系的节点（写在一个div里面）
-	7.路由要写在控制器前面
-	8.templateUrl:path 加载页面需要在服务器下面测试。例：
-	.when("/"
-		{templateUrl:"tmpl/index.html //路径"
-		})
-**主要思想**：使用路由器时，一定要把所有页面想象成一个页面。（在服务器下面测试）
+		
+
+#####AngularJS输入验证（上面有案例） 
+
+
+	1.$dirty      表单填写记录  
+	2.$valid		字段内容合法  
+	3.invalid		字段内容是非法的  
+	4.pristine	表单没有填写记录  
 	
-	实例解析：
-	1、载入了实现路由的 js 文件：angular-route.js。
-	2、包含了 ngRoute 模块作为主应用模块的依赖模块。
-		angular.module('routingDemoApp',['ngRoute'])
-	3、使用 ngView 指令。
-		<div ng-view></div>
-		该 div 内的 HTML 内容会根据路由的变化而变化。
-	4、配置 $routeProvider，AngularJS $routeProvider 用来定义路由规则。
-		module.config(['$routeProvider', function($routeProvider){
-	  	  $routeProvider
-	        .when('/',{template:'这是首页页面'})
-	        .when('/computers',{template:'这是电脑分类页面'})
-	        .when('/printers',{template:'这是打印机页面'})
-	        .otherwise({redirectTo:'/'});
-		}]);
-		AngularJS 模块的 config 函数用于配置路由规则。通过使用 configAPI，我们请求把$routeProvider注入到我们的配置函数并且使用$routeProvider.whenAPI来定义我们的路由规则。
-	$routeProvider 为我们提供了 when(path,object) & otherwise(object) 函数按顺序定义所有路由，函数包含两个参数:
-		第一个参数是 URL 或者 URL 正则规则。
-		第二个参数是路由配置对象。
-	路由设置对象
-	AngularJS 路由也可以通过不同的模板来实现。
-	$routeProvider.when 函数的第一个参数是 URL 或者 URL 正则规则，第二个参数为路由配置对象。
-		路由配置对象语法规则如下：
-	$routeProvider.when(url, {
-	    template: string,
-	    templateUrl: string,
-	    controller: string, function 或 array,
-	    controllerAs: string,
-	    redirectTo: string, function,
-	    resolve: object<key, function>
-	});
+	
+
+
+##AngularJS 路由  
+
+
+1.AngularJS 路由允许我们通过不同的 URL 访问不同的内容。 
+
+2.通过 AngularJS 可以实现多视图的单页Web应用（single page web application，SPA）。  
+
+3.通常我们的URL形式为 http://runoob.com/first/page，但在单页Web应用  
+中 AngularJS 通过 # + 标记 实现 例如：  
+	
+		http://runoob.com/#/first  
+		http://runoob.com/#/second  
+		http://runoob.com/#/third  
+	
+4.当点击以上的任意一个链接时，向服务端请的地址都是一样的 (http://runoob.com/)。  
+因为 # 号之后的内容在向服务端请求时会被浏览器忽略掉。 所以就需要在客户端实现 # 号后面
+内容的功能实现。  
+
+5.路由 属于angularJS的扩展，需要额外引入文件 angular-route.js  
+
+6.注意 注意：路由可以是并列关系的节点，指令是包裹关系的节点（写在一个div里面） 
+
+7.路由要写在控制器前面  
+
+8.templateUrl:path 加载页面需要在服务器下面测试。例： 
+	
+		.when("/"
+			{templateUrl:"tmpl/index.html //路径"
+			})  
+		
+**主要思想**：使用路由器时，一定要把所有页面想象成一个页面。（在服务器下面测试）  
+
+	
+实例解析：
+1、载入了实现路由的 js 文件：angular-route.js。
+
+2、包含了 ngRoute 模块作为主应用模块的依赖模块。
+	angular.module('routingDemoApp',['ngRoute'])
+	
+3、使用 ngView 指令。
+	<div ng-view></div>
+	该 div 内的 HTML 内容会根据路由的变化而变化。
+	
+4、配置 $routeProvider，AngularJS $routeProvider 用来定义路由规则。
+
+	module.config(['$routeProvider', function($routeProvider){
+	  $routeProvider
+	.when('/',{template:'这是首页页面'})
+	.when('/computers',{template:'这是电脑分类页面'})
+	.when('/printers',{template:'这是打印机页面'})
+	.otherwise({redirectTo:'/'});
+	}]);
+	
+AngularJS 模块的 config 函数用于配置路由规则。通过使用 configAPI，我们请求把$routeProvider注入到我们的配置函数并且使用$routeProvider.whenAPI来定义我们的路由规则。
+
+$routeProvider 为我们提供了 when(path,object) & otherwise(object) 函数按顺序定义所有路由，函数包含两个参数:
+	第一个参数是 URL 或者 URL 正则规则。
+	第二个参数是路由配置对象。
+路由设置对象
+AngularJS 路由也可以通过不同的模板来实现。
+$routeProvider.when 函数的第一个参数是 URL 或者 URL 正则规则，第二个参数为路由配置对象。
+	路由配置对象语法规则如下：
+		
+		$routeProvider.when(url, {
+		    template: string,
+		    templateUrl: string,
+		    controller: string, function 或 array,
+		    controllerAs: string,
+		    redirectTo: string, function,
+		    resolve: object<key, function>
+		});
+	
 	参数说明：
 		template:
 			如果我们只需要在 ng-view 中插入简单的 HTML 内容，则使用该参数：
+			
 				.when('/computers',{template:'这是电脑分类页面'})
 		templateUrl:
 			如果我们只需要在 ng-view 中插入 HTML 模板文件，则使用该参数：
+			
 				$routeProvider.when('/computers', {
-	    templateUrl: 'views/computers.html',
-		});
+	  			  templateUrl: 'views/computers.html',
+				});
 	以上代码会从服务端获取 views/computers.html 文件内容插入到 ng-view 中。
+	
 	controller:
+	
 		function、string或数组类型，在当前模板上执行的controller函数，生成新的scope。
+		
 	controllerAs:
+	
 		string类型，为controller指定别名。
 	redirectTo:
+	
 		重定向的地址。
 	resolve:
+	
 		指定当前controller所依赖的其他模块。
 	
-**写法：**
+**写法：**  
 
 	angular路由写法 -->
 		<a href="#/">首页</a>
@@ -426,10 +487,11 @@ ng-model 属性的值为你在下拉菜单选中的选项：
 				alert($scope.info);
 			}
 		})
-###指令系统（自定义指令系统）
+###指令系统（自定义指令系统）  
 	
 	指令是一个封装好的功能,通过写在,视图的节点上,达到功能无限的复用
-#####限制使用
+	
+#####限制使用  
 
 	实例
 	通过添加 restrict 属性,并设置只值为 "A", 来设置指令只能通过属性的方式来调用:
@@ -449,11 +511,11 @@ ng-model 属性的值为你在下拉菜单选中的选项：
 	restrict 默认值为 EA, 即可以通过元素名和属性名来调用指令。
 	// 推荐使用 AE两种类型
 	//推荐使用replace:true,
-######自定义指令
+######自定义指令  
 	
-使用 .directive 函数来添加自定义的指令。  
-要调用自定义指令，HTML 元素上需要添加自定义指令名。  
-使用驼峰法来命名一个指令， **runoobDirective**, 但在使用它时需要以 - 分割, **runoob-directive**:
+使用 .directive 函数来添加自定义的指令。    
+要调用自定义指令，HTML 元素上需要添加自定义指令名。    
+使用驼峰法来命名一个指令， **runoobDirective**, 但在使用它时需要以 - 分割, **runoob-directive**:  
 	
 	AngularJS 实例
 	<body ng-app="myApp">	
@@ -467,14 +529,14 @@ ng-model 属性的值为你在下拉菜单选中的选项：
 	});
 	</script>
 	</body>
-你可以通过以下方式来调用指令：（这些方式也能输出同样结果）
+你可以通过以下方式来调用指令：（这些方式也能输出同样结果）  
 	
 	元素名  <runoob-directive></runoob-directive>
 	属性    <div runoob-directive></div>
 	类名    <div class="runoob-directive"></div> 
 	注释    <!-- directive: runoob-directive --> 注释指令需要必须加  
 			replace:true属性 推荐 加 template:"<h1>我是指令系统</h1>",
-###**注意:路由可以试并列关系的节点,指令是包裹关系的节点**
+###**注意:路由可以试并列关系的节点,指令是包裹关系的节点**  
 	
 	路由：
 		<a href="#/">
@@ -485,7 +547,7 @@ ng-model 属性的值为你在下拉菜单选中的选项：
 		<div dirce><dirce>
 	</div>//必须是包裹关系
 
-##angular中的compile和link函数
+##angular中的compile和link函数  
 	
 	指令函数：
 		compile：function（）{}//compile选项可以返回一个对象或函数。
@@ -494,12 +556,12 @@ ng-model 属性的值为你在下拉菜单选中的选项：
 
 	compile 选项本身并不会被频繁使用，但是 link 函数则会被经常使用。
 	
-![图片](./images/link.png)
+![](http://a2.qpic.cn/psb?/V12rzXyJ2EqKG8/jwjj2E66CtkuRdpGnFePGd4exOuuQh.T3HfL.FnaE5w!/b/dD8BAAAAAAAA&bo=1wSAAgAAAAADB3M!&rf=viewer_4)
 	
 	当设置了link选项，实际上是创建了一个postLink() 链接函数，以便compile() 函数可以定义链接函数。编译函数(compile)负责对模板DOM进行转换。
 	链接函数(link)负责将作用域和DOM进行链接。
 
-####link函数
+####link函数  
 	
 	// controllerAs控制器名字
 				controllerAs:"linker",
